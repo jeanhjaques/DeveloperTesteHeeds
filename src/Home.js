@@ -1,8 +1,16 @@
+import { useEffect } from 'react';
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, Button, TouchableOpacity} from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity} from 'react-native';
 import { IconButton } from 'react-native-paper';
 
 export default function Home({ navigation }){
+  //App bar settings
+  useEffect(() => {
+    navigation.setOptions({
+      title: "Heeds Technologies Maps"
+    });
+  }, []);
+
     return(
       <View style={styles.container}>
           <TouchableOpacity style={styles.buttonWithIcon} activeOpacity={0.6} underlayColor="#DDDDDD" onPress={() => navigation.navigate('Maps')}>
@@ -20,6 +28,9 @@ export default function Home({ navigation }){
             </View>
           </TouchableOpacity>
 
+          <View style={styles.footer}>
+            <Text style={{fontSize: 12}}>Criado por Jean Henrique ❤</Text>
+          </View>
           <StatusBar style="auto" />
       </View>
     );
@@ -39,6 +50,10 @@ const styles = StyleSheet.create({
     buttonIconVertical:{
       alignItems: 'center',
       justifyContent: 'center'
+    },
+    footer:{
+      position: 'relative',
+      marginTop: 200
     }
 });
   

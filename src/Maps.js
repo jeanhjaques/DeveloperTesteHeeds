@@ -1,11 +1,20 @@
 import { StatusBar } from 'expo-status-bar';
-import { useState } from 'react';
+import { useState, useContext, useEffect } from 'react';
 import { StyleSheet, Text, View, Button, Dimensions } from 'react-native';
-import MapView  from 'react-native-maps';
-import {Marker} from 'react-native-maps';
+import MapView from 'react-native-maps';
+import { Marker } from 'react-native-maps';
+import { ShopListContext } from './providers/ShopList';
 
 
 export default function Maps({ navigation }) {
+  //App bar settings
+  useEffect(() => {
+    navigation.setOptions({
+      title: "Localizar Lojas"
+    });
+  }, []);
+
+  //default region when opening the map
   const [region, setRegion] = useState(
     {
       latitude: -15.641977371365222,
@@ -15,42 +24,20 @@ export default function Maps({ navigation }) {
     },
   );
 
-  const shops = [
-    {
-      id: 1,
-      name: 'Filial Paulista',
-      description: 'Loja localizada em São Paulo - SP',
-      localization: {
-        latitude: -23.505971822962312,
-        longitude: -46.657144177170075,
-        latitudeDelta: 0.01,
-        longitudeDelta: 0.01,
-      }
-    },
-    {
-      id: 2,
-      name: 'Filial Sul Matogrossensse',
-      description: 'Loja localizada em Campo Grande - MS',
-      localization: {
-        latitude: -20.457402700586332, 
-        longitude: -54.60018379341746,
-        latitudeDelta: 0.01,
-        longitudeDelta: 0.01,
-      }
-    }
-  ]
+  const { shops, setShops } = useContext(ShopListContext);
 
   return (
     <View style={styles.container}>
+
       <MapView style={styles.map} region={region}>
-      {shops.map((marker, index) => (
-        <Marker
-          key={index}
-          coordinate={marker.localization}
-          title={marker.name}
-          description={marker.description}
-        />
-      ))}
+        {shops.map((marker, index) => (
+          <Marker
+            key={index}
+            coordinate={marker.localization}
+            title={marker.name}
+            description={marker.description}
+          />
+        ))}
       </MapView>
     </View>
   );

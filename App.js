@@ -9,6 +9,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 //Screens
 import Home from './src/Home.js';
 import Maps from './src/Maps.js';
+import ShopRegister from './src/ShopRegister.js';
 
 const Stack = createNativeStackNavigator();
 
@@ -18,6 +19,7 @@ export default function App() {
       <Stack.Navigator>
         <Stack.Screen name="Home" component={Home} />
         <Stack.Screen name="Maps" component={Maps} />
+        <Stack.Screen name="ShopRegister" component={ShopRegister}/>
       </Stack.Navigator>
     </NavigationContainer>
   );

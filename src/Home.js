@@ -13,7 +13,7 @@ export default function Home({ navigation }){
               </View>
             </View>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.buttonWithIcon} activeOpacity={0.6} underlayColor="#DDDDDD" onPress={() => navigation.navigate('Maps')}>
+          <TouchableOpacity style={styles.buttonWithIcon} activeOpacity={0.6} underlayColor="#DDDDDD" onPress={() => navigation.navigate('ShopRegister')}>
             <View style={styles.buttonIconVertical}>
               <IconButton icon="plus-circle-outline" color="#03a9f4" size={50}/>
               <Text>Adicionar novas lojas</Text>
